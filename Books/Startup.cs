@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Books.Seeds;
 using Books.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,22 +25,24 @@ namespace Books
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc();
-			var connectionString = Configuration["connectionStrings:bookDbConnectionString"]; 
-			services.AddDbContext<BookDbContext>(c => c.UseSqlServer(connectionString));
+			services.AddDbContext<BookDbContext>(c => c.UseSqlServer(Configuration["connectionStrings:bookDbConnectionString"]));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env, BookDbContext context)
 		{
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
 			}
 
-			app.Run(async (context) =>
-			{
-				await context.Response.WriteAsync("Hello World!");
-			});
-		}
+            // Seed the DB
+            //context.SeedDataContext();
+
+            //app.Run(async (context) =>
+            //{
+            //	await context.Response.WriteAsync("Hello World!");
+            //});
+        }
 	}
 }

@@ -26,7 +26,7 @@ namespace Books.Models
 		public short Rating { get; set; }
 
 		// virtual to allow for overriding and lazy loading by EF
-		public Review Reviewer { get; set; }
+		public Reviewer Reviewer { get; set; }
 		public Book Book { get; set; }
 	}
 }
