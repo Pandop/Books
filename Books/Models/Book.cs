@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Books.Models
 {
@@ -8,9 +9,8 @@ namespace Books.Models
 		public string Title { get; set; }
 		public string IsBN { get; set; }
 		public DateTime? PublishedDateTime { get; set; }
-		public bool Published { get; set; }
-		// BookAuthors goes here
-		// BookCategories goes here
-		// Book Reviews goes here
+		public ICollection<Author> Authors { get; set; }
+		public ICollection<BookCategory> BookCategories { get; set; }
+		public ICollection<Review> Reviews { get; set; }		
 	}
 }

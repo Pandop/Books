@@ -7,9 +7,9 @@ namespace Books.Models
 {
 	public class BookAuthor
 	{
-		// BookId goes
-		// Book goes here
-		// AuthorId goes
-		// Author goes here
+		public int BookId { get; set; }
+		public Book Book { get; set; }
+		public int AuthorId { get; set; }
+		public Author Author { get; set; }
 	}
 }

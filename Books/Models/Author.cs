@@ -5,7 +5,7 @@
 		public int Id { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
-		// Author's Country goes here
-		// Author's Books goes here
+		public Country Country { get; set; }
+		public int CountryId { get; set; }
 	}
 }

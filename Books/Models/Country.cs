@@ -4,6 +4,7 @@
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-		// Country's Authors goes here
+		public Author Author { get; set; }
+		public int AuthorId { get; set; }		
 	}
 }

@@ -5,7 +5,9 @@
 		public int Id { get; set; }
 		public string description { get; set; }
 		public short Rating { get; set; }
-		// Review's Reviewer goes here
-		// Review's Book goes here
+		public Review Reviewer { get; set; }
+		public int ReviewerId { get; set; }
+		public Book Book { get; set; }
+		public int BookId { get; set; }
 	}
 }
