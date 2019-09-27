@@ -7,9 +7,10 @@ namespace Books.Models
 {
 	public class BookCategory
 	{
-		public int BookId { get; set; }
+		// placing the Book & Category in here let the EF what tables we're connecting
+		public Guid BookId { get; set; }
 		public Book Book { get; set; }
-		public int CategoryId { get; set; }
+		public Guid CategoryId { get; set; }
 		public Category Category { get; set; }
 	}
 }

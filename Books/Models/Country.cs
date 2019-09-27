@@ -1,10 +1,25 @@
-﻿namespace Books.Models
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Books.Models
 {
 	public class Country
 	{
-		public int Id { get; set; }
+		//[Key]
+		//[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		//public int Id { get; set; }
+
+
+		[Key]
+		public Guid Id { get; set; }
+
+		[Required]
+		[MaxLength(50, ErrorMessage = "Country cannot be more than 50 characters")]
 		public string Name { get; set; }
-		public Author Author { get; set; }
-		public int AuthorId { get; set; }		
+
+		// virtual to allow for overriding and lazy loading by EF
+		public virtual ICollection<Author> Authors { get; set; }
 	}
 }

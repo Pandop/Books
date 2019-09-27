@@ -7,9 +7,10 @@ namespace Books.Models
 {
 	public class BookAuthor
 	{
-		public int BookId { get; set; }
+		// placing the Book & Author in here let the EF what table we're connecting to
+		public Guid BookId { get; set; }
 		public Book Book { get; set; }
-		public int AuthorId { get; set; }
+		public Guid AuthorId { get; set; }
 		public Author Author { get; set; }
 	}
 }
