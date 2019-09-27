@@ -32,9 +32,9 @@ namespace Books.Services
 			modelBuilder.Entity<BookAuthor>()
 						.HasKey(ba => new { ba.BookId, ba.AuthorId });
 			modelBuilder.Entity<BookAuthor>()
-						.HasOne(a => a.Book)
+						.HasOne(a => a.Author)
 						.WithMany(ba => ba.BookAuthors)
-						.HasForeignKey(a => a.BookId);
+						.HasForeignKey(a => a.AuthorId);
 			modelBuilder.Entity<BookAuthor>()
 						.HasOne(b => b.Book)
 						.WithMany(ba => ba.BookAuthors)
