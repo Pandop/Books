@@ -14,7 +14,7 @@ namespace Books.Models
 		public Guid Id { get; set; }
 
 		[Required]
-		[StringLength(200, MinimumLength = 10, ErrorMessage = "Comment must be between 10 and 200 characters")]
+		[StringLength(200, MinimumLength = 10, ErrorMessage = "Headline must be between 10 and 200 characters")]
 		public string Headline { get; set; }
 
 		[Required]
@@ -22,7 +22,7 @@ namespace Books.Models
 		public string Comment { get; set; }
 
 		[Required]
-		[MaxLength(50, ErrorMessage = "Name cannot be more than 50 characters")]
+		[Range(1, 5, ErrorMessage = "Rating must be between 1 and 5 stars")]
 		public short Rating { get; set; }
 
 		// virtual to allow for overriding and lazy loading by EF
