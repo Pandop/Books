@@ -25,9 +25,9 @@ namespace Books.Models
 		public DateTime? DatePublished { get; set; }
 
 		// virtual to allow for overriding and lazy loading by EF		
-		public virtual ICollection<Review> Reviews { get; set; }
-		public virtual ICollection<BookAuthor> BookAuthors { get; set; }
-		public virtual ICollection<BookCategory> BookCategories { get; set; }
+		public virtual IEnumerable<Review> Reviews { get; set; }
+		public virtual IEnumerable<BookAuthor> BookAuthors { get; set; }
+		public virtual IEnumerable<BookCategory> BookCategories { get; set; }
 
 		// [EntityForeignKey("Reviews", "Book", typeof(Book))]
 		// [EntityForeignKey("BookAuthors", "Book", typeof(Book))]

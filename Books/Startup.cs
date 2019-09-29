@@ -25,8 +25,19 @@ namespace Books
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc();
+
+            // add DBContext to services
 			services.AddDbContext<BookDbContext>(c => c.UseSqlServer(Configuration["connectionStrings:bookDbConnectionString"]));
-		}
+
+            // add ICountryRepository to services
+            services.AddScoped<ICountryRepository, CountryRepository>();
+
+            // add ICategoryRepository to services
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+            // add IReviewerRepository to services
+            services.AddScoped<IReviewerRepository, ReviewerRepository>();
+        }
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, BookDbContext context)
@@ -34,15 +45,13 @@ namespace Books
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
-			}
+			}            
 
-            // Seed the DB
+            // add Mvc to the pipeline
+            app.UseMvc();
+
+            // Seeding the DB
             //context.SeedDataContext();
-
-            //app.Run(async (context) =>
-            //{
-            //	await context.Response.WriteAsync("Hello World!");
-            //});
         }
-	}
+    }
 }

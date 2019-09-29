@@ -23,7 +23,7 @@ namespace Books.Models
 		[MaxLength(150, ErrorMessage = "Last Name cannot be more than 150 characters")]
 		public string LastName { get; set; }
 
-		public virtual Country Country { get; set; }
+		public Country Country { get; set; }
 		public virtual ICollection<BookAuthor> BookAuthors { get; set; }
 	}
 }

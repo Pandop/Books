@@ -20,6 +20,6 @@ namespace Books.Models
 		public string Name { get; set; }
 
 		// virtual to allow for overriding and lazy loading by EF
-		public virtual ICollection<Author> Authors { get; set; }
+		public virtual IEnumerable<Author> Authors { get; set; }
 	}
 }
