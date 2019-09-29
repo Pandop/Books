@@ -13,9 +13,11 @@ namespace Books.Controllers
     public class CategoriesController : Controller
     {
         private readonly ICategoryRepository _categoryRepository;
-        public CategoriesController(ICategoryRepository categoryRepository)
+        private readonly IBookRepository _bookRepository;
+        public CategoriesController(ICategoryRepository categoryRepository, IBookRepository bookRepository)
         {
             _categoryRepository = categoryRepository;
+            _bookRepository = bookRepository;
         }
 
         //api/categories
@@ -73,8 +75,8 @@ namespace Books.Controllers
         public async Task<IActionResult> GetAllCategoriesForABookAsync(Guid bookId)
         {
             // If Book does not exist
-            //if (!await _categoryRepository.BookExistsAsync(bookId))
-                //return NotFound();
+            if (!await _bookRepository.BookExistsAsync(bookId))
+                return NotFound();
 
             // Retrieve categories if book exists 
             var categories = await _categoryRepository.GetAllCategoriesForABookAsync(bookId);

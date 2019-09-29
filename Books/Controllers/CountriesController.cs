@@ -13,9 +13,11 @@ namespace Books.Controllers
     public class CountriesController : Controller
     {
         private readonly ICountryRepository _countryRepository;
-        public CountriesController(ICountryRepository countryRepository)
+        private readonly IAuthorRepository _authorRepository;
+        public CountriesController(ICountryRepository countryRepository, IAuthorRepository authorRepository)
         {
             _countryRepository = countryRepository;
+            _authorRepository = authorRepository
         }
 
         //api/countries
@@ -74,8 +76,10 @@ namespace Books.Controllers
         [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(CountryDto))]
         public async Task<IActionResult> GetCountryOfAnAuthorAsync(Guid authorId)
-        {
-            // TODO: validate the author exists
+        {            
+            // Author does not exist
+            if (!await _authorRepository.AuthorExistsAsync(authorId))
+                return NotFound();
 
             var country = await _countryRepository.GetCountryOfAnAuthorAsync(authorId);
 
@@ -83,7 +87,7 @@ namespace Books.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            // Map Country Object to DTO
+            //TODO: Map Country Object to DTO
             return Ok();
         }
 
