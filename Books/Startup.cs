@@ -24,20 +24,21 @@ namespace Books
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
+			// add Mvc
 			services.AddMvc();
 
-            // add DBContext to services
+			// add DBContext to services
 			services.AddDbContext<BookDbContext>(c => c.UseSqlServer(Configuration["connectionStrings:bookDbConnectionString"]));
 
-            // add ICountryRepository to services
-            services.AddScoped<ICountryRepository, CountryRepository>();
+			// add ICountryRepository to services
+			services.AddScoped<ICountryRepository, CountryRepository>();
 
-            // add ICategoryRepository to services
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
+			// add ICategoryRepository to services
+			services.AddScoped<ICategoryRepository, CategoryRepository>();
 
-            // add IReviewerRepository to services
-            services.AddScoped<IReviewerRepository, ReviewerRepository>();
-        }
+			// add IReviewerRepository to services
+			services.AddScoped<IReviewerRepository, ReviewerRepository>();
+		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, BookDbContext context)
@@ -47,11 +48,11 @@ namespace Books
 				app.UseDeveloperExceptionPage();
 			}            
 
-            // add Mvc to the pipeline
-            app.UseMvc();
+			// add Mvc to the pipeline
+			app.UseMvc();
 
-            // Seeding the DB
-            //context.SeedDataContext();
-        }
-    }
+			// Seeding the DB
+			context.SeedDataContext();
+		}
+	}
 }
