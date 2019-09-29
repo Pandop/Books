@@ -13,12 +13,14 @@ namespace Books.Controllers
     public class ReviewersController: Controller
     {
         private readonly IReviewerRepository _reviewerRepository;
-        public ReviewersController(IReviewerRepository reviewerRepository)
+        private readonly IReviewRepository _reviewRepository;
+        public ReviewersController(IReviewerRepository reviewerRepository, IReviewRepository reviewRepository)
         {
             _reviewerRepository = reviewerRepository;
+            _reviewRepository = reviewRepository;
         }
 
-        // api/reviewers
+        //api/reviewers
         [HttpGet]
         [ProducesResponseType(400)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ReviewerDto>))]
@@ -112,8 +114,35 @@ namespace Books.Controllers
             return Ok(reviewsDto);
         }
 
+        //api/reviewers/reviewId/reviewer
+        [HttpGet("{reviewId}/reviewer")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(200, Type = typeof(ReviewerDto))]
+        public async Task<IActionResult> GetReviewerForReviewAsync(Guid reviewId)
+        {
+            // Review does not exist
+            if (!await _reviewRepository.ReviewExistsAsync(reviewId))
+                return NotFound();
 
+            // Review exists hence retrieve reviewer
+            var reviewer = await _reviewerRepository.GetReviewerForReviewAsync(reviewId);
 
+            // Something wrong while retrieving reviewer
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            // Otherwise map Reviewer to DTO
+            var reviewerDto = new ReviewerDto()
+            {
+                Id = reviewer.Id,
+                FirstName = reviewer.FirstName,
+                LastName = reviewer.LastName
+            };
+
+            // Return reviews Dto
+            return Ok(reviewerDto);
+        }
 
     }
 }
