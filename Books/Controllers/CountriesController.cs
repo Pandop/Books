@@ -17,7 +17,7 @@ namespace Books.Controllers
         public CountriesController(ICountryRepository countryRepository, IAuthorRepository authorRepository)
         {
             _countryRepository = countryRepository;
-            _authorRepository = authorRepository
+            _authorRepository = authorRepository;
         }
 
         //api/countries
