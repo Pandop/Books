@@ -76,7 +76,11 @@ namespace Books.Controllers
 		[ProducesResponseType(404)]
 		[ProducesResponseType(200, Type = typeof(CountryDto))]
 		public async Task<IActionResult> GetCountryOfAnAuthorAsync(Guid authorId)
+<<<<<<< HEAD
 		{            
+=======
+		{
+>>>>>>> feature/review
 			// Author does not exist
 			if (!await _authorRepository.AuthorExistsAsync(authorId))
 				return NotFound();

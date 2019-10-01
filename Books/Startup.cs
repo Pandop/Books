@@ -38,6 +38,15 @@ namespace Books
 
 			// add IReviewerRepository to services
 			services.AddScoped<IReviewerRepository, ReviewerRepository>();
+<<<<<<< HEAD
+=======
+
+			// add IBookRepository to services
+			services.AddScoped<IBookRepository, BookRepository>();
+
+			// add IAuthorRepository to services
+			services.AddScoped<IAuthorRepository, AuthorRepository>();
+>>>>>>> feature/review
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +61,11 @@ namespace Books
 			app.UseMvc();
 
 			// Seeding the DB
+<<<<<<< HEAD
 			context.SeedDataContext();
+=======
+			//context.SeedDataContext();
+>>>>>>> feature/review
 		}
 	}
 }
