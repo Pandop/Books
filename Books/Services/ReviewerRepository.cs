@@ -71,10 +71,10 @@ namespace Books.Services
 
 		public Task<bool> ReviewerExistsAsync(Guid reviewerId)
 		{
-			// No categoryId is null or empty
+			// No reviewerId is null or empty
 			if (reviewerId == Guid.Empty) throw new ArgumentNullException(nameof(reviewerId));
 
-			// Return reviewer as Task
+			// Return true if reviewer exists
 			return Task.FromResult(_reviewerContext.Reviewers.Any(r => r.Id == reviewerId));
 		}
 	}

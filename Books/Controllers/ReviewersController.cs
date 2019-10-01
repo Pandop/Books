@@ -41,7 +41,7 @@ namespace Books.Controllers
 				{
 					Id = reviewer.Id,
 					FirstName = reviewer.FirstName,
-					LastName = reviewer.LastName                    
+					LastName = reviewer.LastName
 				});
 			}
 
@@ -78,7 +78,7 @@ namespace Books.Controllers
 			// Return reviewer Dto
 			return Ok(reviewerDto);
 		}
-		
+
 		//api/reviewers/reviewerId/reviews
 		[HttpGet("{reviewerId}/reviews")]
 		[ProducesResponseType(400)]
@@ -105,10 +105,10 @@ namespace Books.Controllers
 				{
 					Id = review.Id,
 					Headline = review.Headline,
-					Comment = review.Comment, 
+					Comment = review.Comment,
 					Rating = review.Rating
 				});
-			}           
+			}
 
 			// Return reviews Dto
 			return Ok(reviewsDto);

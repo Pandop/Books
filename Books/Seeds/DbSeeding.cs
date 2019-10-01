@@ -11,16 +11,11 @@ namespace Books.Seeds
 	{
 		public static void SeedDataContext(this BookDbContext bookContext)
 		{
-<<<<<<< HEAD
 			// If database is not empty
 			if (bookContext.BookAuthors.Count() == 0 || bookContext.Books.Count() == 0 || bookContext.Authors.Count() == 0)
 			{
 				// Otherwise seed the database
 				var booksAuthors = new List<BookAuthor>()
-=======
-			// extension method hence this
-			var booksAuthors = new List<BookAuthor>()
->>>>>>> feature/review
 			{
 				new BookAuthor()
 				{
@@ -227,14 +222,9 @@ namespace Books.Seeds
 				}
 			};
 
-<<<<<<< HEAD
 				bookContext.BookAuthors.AddRange(booksAuthors);
 				bookContext.SaveChanges();
 			}
-=======
-			bookContext.BookAuthors.AddRange(booksAuthors);
-			bookContext.SaveChanges();
->>>>>>> feature/review
 		}
 	}
 }

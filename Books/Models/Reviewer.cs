@@ -22,6 +22,6 @@ namespace Books.Models
 		[Required]
 		[MaxLength(150, ErrorMessage = "Last Name cannot be more than 150 characters")]
 		public string LastName { get; set; }
-		public virtual ICollection<Review> Reviews{ get; set; }
+		public virtual IEnumerable<Review> Reviews{ get; set; }
 	}
 }
