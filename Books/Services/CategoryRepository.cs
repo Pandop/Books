@@ -81,5 +81,11 @@ namespace Books.Services
 			// Return first if found otherwise null
 			return Task.FromResult(categoryTask);
 		}
+
+		public Task<bool> IsDuplicateCategoryName(Guid categoryId, string categoryName)
+		{
+			// Return true if category with similar category or name exists in database
+			return Task.FromResult(_categoryContext.Categories.Any(c => c.Name.Trim().ToUpper() == categoryName.Trim().ToUpper() && c.Id != categoryId));
+		}
 	}
 }

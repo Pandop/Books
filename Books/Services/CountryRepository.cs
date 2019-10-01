@@ -19,7 +19,7 @@ namespace Books.Services
 			if (countryId == Guid.Empty)
 				throw new ArgumentNullException(nameof(countryId));
 
-			// Get Authors Task       
+			// Get Authors Task
 			 var authorsTask = _countryContext.Authors.Where(c => c.Country.Id == countryId).AsEnumerable();
 
 			// return Task
@@ -66,6 +66,12 @@ namespace Books.Services
 
 			// return a task
 			return Task.FromResult( _countryContext.Countries.Any(c=> c.Id==countryId));
+		}
+
+		public Task<bool> IsDuplicateCountryName(Guid countryId, string countryName)
+		{
+			// Return true if country with similar countryId or name exists in database
+			return Task.FromResult(_countryContext.Countries.Any(c => c.Name.Trim().ToUpper() == countryName.Trim().ToUpper() && c.Id != countryId));
 		}
 	}
 }

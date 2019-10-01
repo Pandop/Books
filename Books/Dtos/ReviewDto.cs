@@ -8,6 +8,5 @@ namespace Books.Dtos
 		public string Headline { get; set; }
 		public string Comment { get; set; }
 		public short Rating { get; set; }
-		public decimal AverageRating { get; set; }
 	}
 }

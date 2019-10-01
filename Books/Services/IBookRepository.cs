@@ -12,6 +12,7 @@ namespace Books.Services
 		Task<Book> GetBookAsync(string bookIsbn);
 		Task<decimal> GetBookRatingAsync(Guid bookId);
 		Task<bool> BookExistsAsync(Guid bookId);
+		Task<bool> BookExistsAsync(string bookIsbn);
 		Task<bool> IsDuplicateIsbnAsync(Guid bookId, string bookIsbn);
 	}
 }

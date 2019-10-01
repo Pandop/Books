@@ -23,6 +23,15 @@ namespace Books.Services
 			return Task.FromResult(_bookDbContext.Books.Any(b=> b.Id == bookId));
 		}
 
+		public Task<bool> BookExistsAsync(string bookIsbn)
+		{
+			if (string.IsNullOrEmpty(bookIsbn))
+				throw new ArgumentNullException(nameof(bookIsbn));
+
+			// Book exists, return it task
+			return Task.FromResult(_bookDbContext.Books.Any(b => b.Isbn == bookIsbn));
+		}
+
 		public Task<Book> GetBookAsync(Guid bookId)
 		{
 			// Book Id is empty
@@ -62,13 +71,13 @@ namespace Books.Services
 		public Task<IEnumerable<Book>> GetBooksAsync()
 		{
 			// Fetch all books and return as task
-			return Task.FromResult(_bookDbContext.Books.AsEnumerable());
+			return Task.FromResult(_bookDbContext.Books.OrderBy(b=>b.Title).AsEnumerable());
 		}
 
 		public Task<bool> IsDuplicateIsbnAsync(Guid bookId, string bookIsbn)
 		{
 			// Return true if book with similar bookId or Isbn exists in database
-			return Task.FromResult(_bookDbContext.Books.Any(b=> b.Id==bookId || b.Isbn==bookIsbn));
+			return Task.FromResult(_bookDbContext.Books.Any(b=> b.Isbn.Trim().ToUpper()==bookIsbn.Trim().ToUpper() && b.Id != bookId));
 		}
 	}
 }
