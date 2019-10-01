@@ -20,7 +20,7 @@ namespace Books.Services
 			if (bookId == Guid.Empty) throw new ArgumentNullException(nameof(bookId));
 
 			// Get reviews for given book in database
-			return Task.FromResult( _reviewContext.Reviews.Where(b => b.Id == bookId).AsEnumerable());
+			return Task.FromResult( _reviewContext.Reviews.Where(b => b.Book.Id == bookId).AsEnumerable());
 			
 		}
 
@@ -52,7 +52,7 @@ namespace Books.Services
 		public Task<IEnumerable<Review>> GetReviewsAsync()
 		{
 			// Get reviews from database and return task results
-			return Task.FromResult(_reviewContext.Reviews.OrderBy(r => r.Rating).AsEnumerable());
+			return Task.FromResult(_reviewContext.Reviews.OrderByDescending(r => r.Rating).AsEnumerable());
 		}
 
 		public Task<bool> ReviewExistsAsync(Guid reviewId)
